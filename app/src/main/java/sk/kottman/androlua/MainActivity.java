@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
 
         mLuaState.getGlobal("package");
         mLuaState.getField(-1,"cpath");
-        String nativeLibraryPath = getApplicationInfo().nativeLibraryDir +"/?.so";
+        String nativeLibraryPath = getApplicationInfo().nativeLibraryDir +"/lib?.so";
         mLuaState.pushString(";"+nativeLibraryPath);
         mLuaState.concat(2);
         mLuaState.setField(-2,"cpath");
@@ -173,60 +173,51 @@ public class MainActivity extends Activity {
 
     private void executeLuaStatemanet()
     {
-        final String luaStr = "system.init()\n" +
-                "print(os.time())\n" +
+        final String luaStr = "Log:i(\"lua\",\"----------------------------\")\n" +
+                "system.init()\n" +
+                "Log:i(\"lua\",\"time1=\"..os.time())\n" +
                 "system.sleep(1000)\n" +
-                "print(os.time())\n" +
-                "system.click(450, 465)\n" +
-                "system.sleep(1000)\n" +
-                "system.click(100, 465)\n" +
-                "system.sleep(1000)\n" +
-                "system.click(200, 465)\n" +
-                "system.sleep(1000)\n" +
-                "system.click(300, 465)\n" +
-                "system.sleep(2000)\n" +
-                "system.volumeDown()\n" +
-                "system.back()\n" +
-                "system.sleep(1000)\n" +
-                "system.home()\n" +
-                "system.sleep(1000)\n" +
-                "system.menu()\n" +
-                "system.sleep(1000)\n" +
-                "system.homePage()\n" +
-                "system.sleep(1000)\n" +
+                "Log:i(\"lua\",\"time2=\"..os.time())\n" +
+                "system.click(100, 360)\n" +
+                "system.sleep(200)\n" +
+                "system.click(350, 360)\n" +
+                "system.sleep(200)\n" +
+                "system.click(550, 360)\n" +
+                "system.sleep(200)\n" +
+                "system.click(1000, 360)\n" +
+                "system.sleep(200)\n" +
+                "system.click(770, 360)\n";
 
-                "system.touchDown(300, 0)\n" +
-                "system.sleep(10)\n" +
-                "system.touchScroll(300, 50)\n" +
-                "system.sleep(10)\n" +
-                "system.touchScroll(300, 100)\n" +
-                "system.sleep(10)\n" +
-                "system.touchScroll(300, 150)\n" +
-                "system.sleep(10)\n" +
-                "system.touchScroll(300, 200)\n" +
-                "system.sleep(10)\n" +
-                "system.touchScroll(300, 250)\n" +
-                "system.sleep(10)\n" +
-                "system.touchScroll(300, 350)\n" +
-                "system.sleep(10)\n" +
-                "system.touchUp(300, 465)\n" +
-                "system.close()\n";// 定义一个Lua变量
+//        final String luaStr =  "system.sleep(2000)\n"+
+//                "system.touchDown(300, 0)\n" +
+//                "system.sleep(10)\n" +
+//                "system.touchScroll(300, 50)\n" +
+//                "system.sleep(10)\n" +
+//                "system.touchScroll(300, 100)\n" +
+//                "system.sleep(10)\n" +
+//                "system.touchScroll(300, 150)\n" +
+//                "system.sleep(10)\n" +
+//                "system.touchScroll(300, 200)\n" +
+//                "system.sleep(10)\n" +
+//                "system.touchScroll(300, 250)\n" +
+//                "system.sleep(10)\n" +
+//                "system.touchScroll(300, 350)\n" +
+//                "system.sleep(10)\n" +
+//                "system.touchUp(300, 465)\n" +
+//                "system.close()\n";
 
 //        final String str ="package.cpath = \"/storage/emulated/legacy/xsp/?.so;\" .. package.cpath\n" +
 //                "Log:i(\"LuaLog\", \"kkkkkk\")\n"+"t = require(\"libAdd\")\n"  +"Log:i(\"luaLog\",\"add:\"..t.Add(1,2))\n";
 
-        final String str =
-                "Log:i(\"LuaLog\", \"kkkkkk\")\n"+"t = require(\"libAdd\")\n" +"a = require(\"libunzip\")\n";
 
 
         try {
-            //evalLua(readStream(getResources().openRawResource(R.raw.luafile)));
-            //evalLua(luaStr);
-            evalLua(readStream(getResources().getAssets().open("greet.lua")));
+            evalLua(luaStr);
+            //evalLua(readStream(getResources().getAssets().open("sqlite3/order.lua")));
         } catch (LuaException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
         }
 
 
@@ -243,10 +234,10 @@ public class MainActivity extends Activity {
             mLuaState.remove(-2);
             mLuaState.insert(-2);
             ok = mLuaState.pcall(0, 0, -2);
+            //Log.e("aa", mLuaState.toString(-1) );
             if (ok == 0) {
                 String res = output.toString();
                 output.setLength(0);
-                Log.e("test", "testRes:"+res);
                 return res;
             }
         }
@@ -288,7 +279,6 @@ public class MainActivity extends Activity {
             //test error
             mLuaState.getGlobal("testErrorHandler");
             int ok =mLuaState.pcall(0, 0,-2);
-            Log.e("tLua", "ok: "+ok);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -65,3 +65,7 @@ target_link_libraries( luajava  lua  ${log-lib} )
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/src/main/jni/unzip/myunzip)
 
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/src/main/jni/test)
+
+ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/src/main/jni/sqlite3/mySqlite3)
+
+#ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/src/main/jni/sqlite3/xxSqlite3)

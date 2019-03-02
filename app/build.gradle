@@ -7,12 +7,6 @@ android {
         applicationId "sk.kottman.androlua"
         minSdkVersion 18
         targetSdkVersion 4
-//
-//        externalNativeBuild {
-//            cmake {
-//                cppFlags ""
-//            }
-//        }
     }
 
     buildTypes {
@@ -22,11 +16,6 @@ android {
         }
     }
 
-//    externalNativeBuild {
-//        cmake {
-//            path "CMakeLists.txt"
-//        }
-//    }
 }
 
 dependencies {

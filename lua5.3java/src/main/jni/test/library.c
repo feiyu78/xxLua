@@ -21,7 +21,7 @@ static const luaL_Reg Add[] = {
 };
 
 
-int luaopen_libAdd(lua_State *L) {
+int luaopen_Add(lua_State *L) {
     luaL_newlib(L, Add);
     return 1;
 }

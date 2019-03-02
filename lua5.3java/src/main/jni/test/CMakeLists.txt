@@ -9,5 +9,5 @@ add_library(
              ${CMAKE_SOURCE_DIR}/src/main/jni/test/library.c
              )
 
-target_link_libraries(Add  luajava  ${log-lib}  dl)
+target_link_libraries(Add  luajava  ${log-lib})
 

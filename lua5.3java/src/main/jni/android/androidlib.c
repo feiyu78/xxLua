@@ -1,6 +1,4 @@
-//
-// Created by huangxin on 2018/1/13.
-//
+
 
 #include "unistd.h"
 #include "lua.h"

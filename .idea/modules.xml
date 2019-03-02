@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lua5.3java/lua5.3java.iml" filepath="$PROJECT_DIR$/lua5.3java/lua5.3java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxLua.iml" filepath="$PROJECT_DIR$/xxLua.iml" />
+    </modules>
+  </component>
+</project>

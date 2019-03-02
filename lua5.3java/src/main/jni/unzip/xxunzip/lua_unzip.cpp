@@ -1,5 +1,5 @@
 
-#include "ExtensionSupport.h"
+#include "XModExtSupport.h"
 #include "unzip.h"
 
 #include <string.h>
